@@ -15,13 +15,14 @@ async function generalSearch(lat, lng, search) {
     params: {
       ll: ll,
       query: search,
-      radius: 100000,
+      radius: 50000,
       category: 16000,
       limit: 50,
     },
   });
 
   return response.data;
+
 }
 
 async function getPic(fsq_id){

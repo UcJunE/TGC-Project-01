@@ -19,27 +19,29 @@ window.addEventListener("DOMContentLoaded", async function () {
     }
   ).addTo(map);
 
-  let resultOfSearch = L.layerGroup();
-  resultOfSearch.addTo(map);
+  let resultOfSearchLayer = L.markerClusterGroup();
+  resultOfSearchLayer.addTo(map);
 
   let generalData = await generalSearch(1.29, 103.85, "garden");
-  console.log(generalData.results);
+
   for (index of generalData.results) {
     let lat = index.geocodes.main.latitude;
     let lng = index.geocodes.main.longitude;
     let locationName = index.name;
+    let eachPic = index.fsq_id;
+    console.log(eachPic);
 
-    let marker = L.marker([lat, lng]).addTo(resultOfSearch);
+    let marker = L.marker([lat, lng]).addTo(resultOfSearchLayer);
 
     marker.bindPopup(function () {
       let newDivElement = document.createElement("div");
-      newDivElement.innerHTML = `<h1>${locationName}</h1>`;
+      newDivElement.classList.add("popup");
+      newDivElement.innerHTML += `<h1>${locationName}</h1>`;
 
       async function retrievePicture() {
-        let pic = await getPic(index.fsq_id);
-        let firstPic = index.categories[0].icon;
-        let url = firstPic.prefix + "original" + firstPic.suffix;
-        newDivElement += `<img src="${url}"/>`;
+        let pic = await getPic(eachPic);
+        let url = pic[0].prefix + "original" + pic[0].suffix;
+        newDivElement.innerHTML += `<div><img class="img" src="${url}"></div>`;
         console.log(url);
       }
       retrievePicture();
