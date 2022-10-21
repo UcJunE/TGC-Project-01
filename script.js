@@ -1,4 +1,60 @@
 window.addEventListener("DOMContentLoaded", async function () {
+  function init() {
+    let map = initMap();
+    let resultOfSearchLayer = L.layerGroup();
+    resultOfSearchLayer.addTo(map);
+
+    document
+      .querySelector("#btnSearch")
+      .addEventListener("click", async function () {
+        resultOfSearchLayer.clearLayers();
+
+        let queryTerms = document.querySelector("#queryTerms").value;
+        let boundaries = map.getBounds();
+        let center = boundaries.getCenter();
+        let latLng = center.lat + "," + center.lng;
+        let queryResults = await generalSearch(latLng, queryTerms, 10000);
+
+        let queryResultsElement = document.querySelector("#results");
+
+        for (index of queryResults.results) {
+          let lat = index.geocodes.main.latitude;
+          let lng = index.geocodes.main.longitude;
+          let locationName = index.name;
+          let eachPic = index.fsq_id;
+
+          let marker = L.marker([lat, lng]).addTo(resultOfSearchLayer);
+
+          marker.bindPopup(function () {
+            let newDivElement = document.createElement("div");
+            newDivElement.classList.add("popup");
+            newDivElement.innerHTML += `<h1>${locationName}</h1>`;
+
+            async function retrievePicture() {
+              let pic = await getPic(eachPic);
+              let url = pic[0].prefix + 300 * 300 + pic[0].suffix;
+              newDivElement.innerHTML += `<div><img class="img-fluid" src="${url}"></div>`;
+            }
+            retrievePicture();
+            return newDivElement;
+          });
+
+          let resultElement = document.createElement("div");
+          resultElement.innerText = locationName;
+          resultElement.classList.add("search-result");
+
+          resultElement.addEventListener("click", function () {
+            map.flyTo([lat, lng], 16);
+            marker.openPopup();
+          });
+          queryResultsElement.appendChild(resultElement);
+        }
+      });
+  }
+  init();
+});
+
+function initMap() {
   // create a map object
   let map = L.map("map");
   // set the center point and the zoom
@@ -19,33 +75,5 @@ window.addEventListener("DOMContentLoaded", async function () {
     }
   ).addTo(map);
 
-  let resultOfSearchLayer = L.markerClusterGroup();
-  resultOfSearchLayer.addTo(map);
-
-  let generalData = await generalSearch(1.29, 103.85, "garden");
-
-  for (index of generalData.results) {
-    let lat = index.geocodes.main.latitude;
-    let lng = index.geocodes.main.longitude;
-    let locationName = index.name;
-    let eachPic = index.fsq_id;
-    console.log(eachPic);
-
-    let marker = L.marker([lat, lng]).addTo(resultOfSearchLayer);
-
-    marker.bindPopup(function () {
-      let newDivElement = document.createElement("div");
-      newDivElement.classList.add("popup");
-      newDivElement.innerHTML += `<h1>${locationName}</h1>`;
-
-      async function retrievePicture() {
-        let pic = await getPic(eachPic);
-        let url = pic[0].prefix + "original" + pic[0].suffix;
-        newDivElement.innerHTML += `<div><img class="img" src="${url}"></div>`;
-        console.log(url);
-      }
-      retrievePicture();
-      return newDivElement;
-    });
-  }
-});
+  return map;
+}

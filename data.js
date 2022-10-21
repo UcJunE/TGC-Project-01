@@ -7,27 +7,25 @@ const headers = {
   Authorization: API_KEY,
 };
 
-async function generalSearch(lat, lng, search) {
-  let ll = lat + "," + lng;
+async function generalSearch(ll, search, radius, category = "") {
   let url = API_BASE_URL + "search";
   let response = await axios.get(url, {
     headers: headers,
     params: {
       ll: ll,
       query: search,
-      radius: 50000,
+      radius: radius,
       category: 16000,
       limit: 50,
+      v: "20210903",
     },
   });
-
   return response.data;
-
 }
 
-async function getPic(fsq_id){
-    let response = await axios.get(API_BASE_URL+`${fsq_id}/photos`,{
-        "headers":headers
-    });
-    return response.data;
+async function getPic(fsq_id) {
+  let response = await axios.get(API_BASE_URL + `${fsq_id}/photos`, {
+    headers: headers,
+  });
+  return response.data;
 }
