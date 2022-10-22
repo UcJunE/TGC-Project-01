@@ -17,8 +17,7 @@
     width: 300px;
     padding-top: 15px;
     padding-bottom: 10px;
-    padding-left: 10px;
-  
+    padding-left: 10px; 
 }
 
 #results {
@@ -42,6 +41,5 @@
     width:300px;
     height:300px;
 }
-
 
 /* BOOSTRAP */

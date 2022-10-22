@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         let boundaries = map.getBounds();
         let center = boundaries.getCenter();
         let latLng = center.lat + "," + center.lng;
+
         let queryResults = await generalSearch(latLng, queryTerms, 10000);
 
         let queryResultsElement = document.querySelector("#results");
@@ -31,9 +32,18 @@ window.addEventListener("DOMContentLoaded", async function () {
             newDivElement.innerHTML += `<h1>${locationName}</h1>`;
 
             async function retrievePicture() {
+              let errorImg = "images/apology-pic.png";
               let pic = await getPic(eachPic);
-              let url = pic[0].prefix + 300 * 300 + pic[0].suffix;
-              newDivElement.innerHTML += `<div><img class="img-fluid" src="${url}"></div>`;
+              //pic == response.data
+              let url = pic[0];
+
+              if (url) {
+                let fullUrl = url.prefix + 300 * 300 + pic[0].suffix;
+                console.log(fullUrl);
+                newDivElement.innerHTML += `<div><img class="img-fluid" src=${fullUrl} /></div>`;
+              } else {
+                newDivElement.innerHTML += `<div><img class="img-fluid" src="${errorImg}"></div>`;
+              }
             }
             retrievePicture();
             return newDivElement;

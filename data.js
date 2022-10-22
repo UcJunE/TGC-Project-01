@@ -27,5 +27,6 @@ async function getPic(fsq_id) {
   let response = await axios.get(API_BASE_URL + `${fsq_id}/photos`, {
     headers: headers,
   });
+
   return response.data;
 }
