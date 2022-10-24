@@ -13,8 +13,29 @@ window.addEventListener("DOMContentLoaded", async function () {
         let boundaries = map.getBounds();
         let center = boundaries.getCenter();
         let latLng = center.lat + "," + center.lng;
+        let selectedCategory = "";
 
-        let queryResults = await generalSearch(latLng, queryTerms, 10000);
+        let presetCaterory = {
+          park: 16000,
+          entertainment: 13000,
+          spiritual: 12098,
+          dining: 13000,
+        };
+
+        // test case if user dint input anything .
+        // preset it to certain category .
+
+        if (queryTerms == "") {
+          queryTerms = "park";
+          selectedCategory = presetCaterory.park;
+        }
+        console.log(selectedCategory);
+        let queryResults = await generalSearch(
+          latLng,
+          queryTerms,
+          50000,
+          selectedCategory
+        );
 
         let queryResultsElement = document.querySelector("#results");
 
@@ -39,7 +60,7 @@ window.addEventListener("DOMContentLoaded", async function () {
 
               if (url) {
                 let fullUrl = url.prefix + 300 * 300 + pic[0].suffix;
-                console.log(fullUrl);
+                // console.log(fullUrl);
                 newDivElement.innerHTML += `<div><img class="img-fluid" src=${fullUrl} /></div>`;
               } else {
                 newDivElement.innerHTML += `<div><img class="img-fluid" src="${errorImg}"></div>`;

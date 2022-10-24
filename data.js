@@ -15,7 +15,7 @@ async function generalSearch(ll, search, radius, category = "") {
       ll: ll,
       query: search,
       radius: radius,
-      category: 16000,
+      category: category,
       limit: 50,
       v: "20210903",
     },
