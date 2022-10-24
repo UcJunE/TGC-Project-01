@@ -83,6 +83,29 @@ window.addEventListener("DOMContentLoaded", async function () {
       });
   }
   init();
+  //weather input
+  let weatherData = await weather(1.29, 103.85);
+  console.log(weatherData);
+  const temp = weatherData.main.temp;
+  const minTemp = weatherData.main.temp_min;
+  const maxTemp = weatherData.main.temp_max;
+  const weatherDescription = weatherData.weather[0].description;
+  const icon = weatherData.weather[0].icon;
+  const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+  console.log(temp, weatherDescription, icon, imageURL);
+  let weatherContainer = document.querySelector("#weather-container");
+  weatherContainer.innerHTML += `
+  <div class="card" style="width: 18rem;">
+  <img src=${imageURL} class="card-img-top" alt="icon.png">
+  <div class="card-body">
+    <h5 class="card-title">Weather Forecast</h5>
+    <p class="card-text">${weatherDescription}</p>
+    <p class="card-text">${temp}</p>
+    <p class="card-text">${minTemp} ${maxTemp}</p>
+    <a href="#" class="btn btn-primary">Other Location</a>
+  </div>
+</div>
+  `;
 });
 
 function initMap() {
