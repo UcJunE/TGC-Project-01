@@ -36,21 +36,193 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/4e2159d219.js"
+      crossorigin="anonymous"
+    ></script>
+
     <!-- my own css-->
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <div id="map-container">
-      <div id="map"></div>
+    <div id="map">
       <div id="search-container">
-        <input type="text" id="queryTerms" />
-        <button id="btnSearch">Search</button>
-        <div id="results"></div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#home-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="home-tab-pane"
+              aria-selected="true"
+            >
+              <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+              Search
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#profile-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="profile-tab-pane"
+              aria-selected="false"
+            >
+              <i class="fa-solid fa-landmark"></i> Explore
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="weather-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#weather-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="weather-tab-pane"
+              aria-selected="false"
+            >
+              <i class="fas fa-cloud-sun"></i> Weather
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="disabled-tab"
+              data-bs-toggle="collapse"
+              data-bs-target="#myTabContent"
+              type="button"
+              role="tab"
+              aria-controls="disabled-tab-pane"
+              aria-selected="false"
+            >
+              <i class="fa-sharp fa-solid fa-angles-up"></i>
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div
+            class="tab-pane fade show active"
+            id="home-tab-pane"
+            role="tabpanel"
+            aria-labelledby="home-tab"
+            tabindex="0"
+          >
+            <input class="form-control mt-3 mb-3" type="text" id="queryTerms" />
+            <button id="btnSearch">Search</button>
+            <div id="results"></div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="profile-tab-pane"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+            tabindex="0"
+          >
+            <div id="explore-tab" class="form-check mt-3">
+              <h3 class="panel-font">Nature related</h3>
+              <input
+                class="form-check-input"
+                type="radio"
+                name="explore"
+                id="nature-sculpture"
+              />
+              <label class="form-check-label radioFont" for="nature-sculpture">
+                Sculpture
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="explore"
+                id="nature-scenic"
+              />
+              <label class="form-check-label radioFont" for="nature-scenic">
+                Scenic location
+              </label>
+            </div>
+            <!-- end of park  -->
+            <br />
+            <div id="" class="form-check mt-3">
+              <h3 class="panel-font">Entertainment</h3>
+              <input
+                class="form-check-input"
+                type="radio"
+                name="explore"
+                id="indoor-game"
+              />
+              <label class="form-check-label radioFont" for="indoor-game">
+                Indoor
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="explore"
+                id="outdoor-game"
+              />
+              <label class="form-check-label radioFont" for="outdoor-game">
+                Outdoor
+              </label>
+            </div>
+            <br />
+            <div id="" class="form-check mt-3">
+              <h3 class="panel-font">Places to Chill</h3>
+              <input
+                class="form-check-input"
+                type="radio"
+                name="explore"
+                id="chill-resto"
+              />
+              <label class="form-check-label radioFont" for="chill-resto">
+                Restaurant
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="explore"
+                id="chill-bar"
+              />
+              <label class="form-check-label radioFont" for="chill-bar">
+                Bar
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="explore"
+                id="chill-pet"
+              />
+              <label class="form-check-label radioFont" for="chill-pet">
+                Pet Cafe
+              </label>
+            </div>
+          </div>
+          <!-- end of explore tab -->
+          <div
+            class="tab-pane fade"
+            id="weather-tab-pane"
+            role="tabpanel"
+            aria-labelledby="weather-tab"
+            tabindex="0"
+          ></div>
+          <!-- end of weather tab -->
+        </div>
       </div>
-      <div class="container-fluid" id="weather-container"></div>
     </div>
-
     <!-- axios-->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"

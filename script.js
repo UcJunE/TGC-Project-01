@@ -5,15 +5,30 @@ window.addEventListener("DOMContentLoaded", async function () {
     resultOfSearchLayer.addTo(map);
 
     document
-      .querySelector("#btnSearch")
+      .querySelector("#home-tab")
       .addEventListener("click", async function () {
         resultOfSearchLayer.clearLayers();
+          // let queryContainer = document.querySelector("#home-tab-pane");
+          // queryContainer.addEventListener("click", function () {
+          //   alert("haha");
+          //   queryContainer.innerHTML += `
+          //   <input type="text" id="queryTerms" />
+          //   <button id="btnSearch">Search</button>
+
+          //   `;
+          // });
 
         let queryTerms = document.querySelector("#queryTerms").value;
         let boundaries = map.getBounds();
         let center = boundaries.getCenter();
         let latLng = center.lat + "," + center.lng;
         let selectedCategory = "";
+        let parkMarker = L.icon({
+          iconUrl: `images/nature.png`,
+          iconSize: [40, 50],
+          iconAnchor: [22, 40],
+          popupAnchor: [0, -30],
+        });
 
         let presetCaterory = {
           park: 16000,
@@ -45,7 +60,9 @@ window.addEventListener("DOMContentLoaded", async function () {
           let locationName = index.name;
           let eachPic = index.fsq_id;
 
-          let marker = L.marker([lat, lng]).addTo(resultOfSearchLayer);
+          let marker = L.marker([lat, lng], { icon: parkMarker }).addTo(
+            resultOfSearchLayer
+          );
 
           marker.bindPopup(function () {
             let newDivElement = document.createElement("div");
@@ -85,27 +102,29 @@ window.addEventListener("DOMContentLoaded", async function () {
   init();
   //weather input
   let weatherData = await weather(1.29, 103.85);
-  console.log(weatherData);
+  // console.log(weatherData);
   const temp = weatherData.main.temp;
   const minTemp = weatherData.main.temp_min;
   const maxTemp = weatherData.main.temp_max;
   const weatherDescription = weatherData.weather[0].description;
   const icon = weatherData.weather[0].icon;
   const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-  console.log(temp, weatherDescription, icon, imageURL);
-  let weatherContainer = document.querySelector("#weather-container");
-  weatherContainer.innerHTML += `
-  <div class="card" style="width: 18rem;">
-  <img src=${imageURL} class="card-img-top" alt="icon.png">
-  <div class="card-body">
-    <h5 class="card-title">Weather Forecast</h5>
-    <p class="card-text">${weatherDescription}</p>
-    <p class="card-text">${temp}</p>
-    <p class="card-text">${minTemp} ${maxTemp}</p>
-    <a href="#" class="btn btn-primary">Other Location</a>
+  // console.log(temp, weatherDescription, icon, imageURL);
+  document.querySelector("#weather-tab").addEventListener("click", function () {
+    let weatherContainer = document.querySelector("#weather-tab-pane");
+    weatherContainer.innerHTML = "";
+    weatherContainer.innerHTML += `
+    <div class="card" style="object-fit:contain;">
+    <img src=${imageURL} class="card-img-top" alt="icon.png">
+    <div class="card-body">
+      <h5 class="card-title">Weather Forecast</h5>
+      <p class="card-text">${weatherDescription}</p>
+      <p class="card-text">${temp}</p>
+      <p class="card-text">${minTemp} ${maxTemp}</p>
+    </div>  
   </div>
-</div>
-  `;
+    `;
+  });
 });
 
 function initMap() {

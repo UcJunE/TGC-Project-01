@@ -7,6 +7,41 @@ const headers = {
   Authorization: API_KEY,
 };
 
+let parkMarker = L.icon({
+  iconUrl: `images/nature.png`,
+  iconSize: [45, 50],
+  iconAnchor: [22, 40],
+  popupAnchor: [0, -30],
+});
+
+let gamingMarker = L.icon({
+  iconUrl: `images/gaming.png`,
+  iconSize: [45, 50],
+  iconAnchor: [22, 40],
+  popupAnchor: [0, -30],
+});
+
+let locationMarker = L.icon({
+  iconUrl: `images/landmark.png`,
+  iconSize: [45, 50],
+  iconAnchor: [22, 40],
+  popupAnchor: [0, -30],
+});
+
+let petMarker = L.icon({
+  iconUrl: `images/pet.png`,
+  iconSize: [45, 50],
+  iconAnchor: [22, 40],
+  popupAnchor: [0, -30],
+});
+
+let foodMarker = L.icon({
+  iconUrl: `images/restaurant.png`,
+  iconSize: [45, 50],
+  iconAnchor: [22, 40],
+  popupAnchor: [0, -30],
+});
+
 async function generalSearch(ll, search, radius, category = "") {
   let url = API_BASE_URL + "search";
   let response = await axios.get(url, {
