@@ -6,9 +6,21 @@ const headers = {
 
   Authorization: API_KEY,
 };
+let allMarker = L.icon({
+  iconUrl: `images/all.png`,
+  iconSize: [45, 50],
+  iconAnchor: [22, 40],
+  popupAnchor: [0, -30],
+});
 
 let parkMarker = L.icon({
   iconUrl: `images/nature.png`,
+  iconSize: [45, 50],
+  iconAnchor: [22, 40],
+  popupAnchor: [0, -30],
+});
+let scenicMarker = L.icon({
+  iconUrl: `images/scenic.png`,
   iconSize: [45, 50],
   iconAnchor: [22, 40],
   popupAnchor: [0, -30],
@@ -35,8 +47,20 @@ let petMarker = L.icon({
   popupAnchor: [0, -30],
 });
 
+let outdoorMarker = L.icon({
+  iconUrl: `images/outdoor.png`,
+  iconSize: [45, 50],
+  iconAnchor: [22, 40],
+  popupAnchor: [0, -30],
+});
 let foodMarker = L.icon({
   iconUrl: `images/restaurant.png`,
+  iconSize: [45, 50],
+  iconAnchor: [22, 40],
+  popupAnchor: [0, -30],
+});
+let barMarker = L.icon({
+  iconUrl: `images/bar.png`,
   iconSize: [45, 50],
   iconAnchor: [22, 40],
   popupAnchor: [0, -30],
@@ -50,7 +74,7 @@ async function generalSearch(ll, search, radius, category = "") {
       ll: ll,
       query: search,
       radius: radius,
-      category: category,
+      categories: category,
       limit: 50,
       v: "20210903",
     },
@@ -85,36 +109,42 @@ function checkRadioBtn() {
 let triggerBtn = document
   .querySelector("#exploreBtn")
   .addEventListener("click", async function () {
-    let markerClusterLayer = L.markerClusterGroup();
-    markerClusterLayer.addTo(map);
+    markerClusterLayer.clearLayers();
     let checkedCategory = checkRadioBtn();
     document.querySelector("#results").innerHTML = "";
     // resultOfSearchLayer.clearLayers();
-    markerClusterLayer.clearLayers();
-
+    let query = "";
     let boundaries = map.getBounds();
     let center = boundaries.getCenter();
     let latLng = center.lat + "," + center.lng;
-    let selectedIcon = locationMarker;
+    let selectedIcon = "";
     console.log(checkedCategory);
-    // let category = {
-    //   park: 16032,
-    //   scenic: 16046,
-    //   entertainment: 13000,
-    //   bowling: 13006,
-    //   sports: 18000,
-    //   restaurant: 13000,
-    //   "pet-cafe": 13063,
-    //   bar: 13003,
-    // };
 
-    // test case if user dint input anything .
-    // preset it to certain category .
+    if (checkedCategory == "16032") {
+      selectedIcon = parkMarker;
+    } else if (checkedCategory == "16046") {
+      selectedIcon = scenicMarker;
+    } else if (checkedCategory == "16047") {
+      selectedIcon = locationMarker;
+    } else if (checkedCategory == "13006") {
+      selectedIcon = gamingMarker;
+    } else if (checkedCategory == "18000") {
+      selectedIcon = outdoorMarker;
+    } else if (checkedCategory == "13000") {
+      selectedIcon = foodMarker;
+    } else if (checkedCategory == "13003") {
+      selectedIcon = barMarker;
+    } else if (checkedCategory == "13063") {
+      query = "pet-cafe";
+      selectedIcon = petMarker;
+    } else {
+      selectedIcon = allMarker;
+    }
 
     let queryResults = await generalSearch(
       latLng,
-      queryTerms,
-      50000,
+      query,
+      10000,
       checkedCategory
     );
 

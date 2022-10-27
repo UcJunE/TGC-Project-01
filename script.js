@@ -1,10 +1,10 @@
 let map = initMap();
+let markerClusterLayer = L.markerClusterGroup();
+markerClusterLayer.addTo(map);
 window.addEventListener("DOMContentLoaded", async function () {
   function init() {
     // let resultOfSearchLayer = L.layerGroup();
     // resultOfSearchLayer.addTo(map);
-    let markerClusterLayer = L.markerClusterGroup();
-    markerClusterLayer.addTo(map);
 
     document
       .querySelector("#btnSearch")
@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         let center = boundaries.getCenter();
         let latLng = center.lat + "," + center.lng;
         let selectedCategory = 16000;
-        let selectedIcon = locationMarker;
+        let selectedIcon = allMarker;
 
         // let category = {
         //   park: 16032,
@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         let queryResults = await generalSearch(
           latLng,
           queryTerms,
-          50000,
+          100000,
           selectedCategory
         );
 
