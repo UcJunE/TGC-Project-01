@@ -53,12 +53,12 @@
           <li class="nav-item" role="presentation">
             <button
               class="nav-link active"
-              id="home-tab"
+              id="search-tab"
               data-bs-toggle="tab"
-              data-bs-target="#home-tab-pane"
+              data-bs-target="#search-tab-pane"
               type="button"
               role="tab"
-              aria-controls="home-tab-pane"
+              aria-controls="search-tab-pane"
               aria-selected="true"
             >
               <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
@@ -68,12 +68,12 @@
           <li class="nav-item" role="presentation">
             <button
               class="nav-link"
-              id="profile-tab"
+              id="explore-tab"
               data-bs-toggle="tab"
-              data-bs-target="#profile-tab-pane"
+              data-bs-target="#explore-tab-pane"
               type="button"
               role="tab"
-              aria-controls="profile-tab-pane"
+              aria-controls="explore-tab-pane"
               aria-selected="false"
             >
               <i class="fa-solid fa-landmark"></i> Explore
@@ -96,12 +96,12 @@
           <li class="nav-item" role="presentation">
             <button
               class="nav-link"
-              id="disabled-tab"
+              id="collapse-tab"
               data-bs-toggle="collapse"
               data-bs-target="#myTabContent"
               type="button"
               role="tab"
-              aria-controls="disabled-tab-pane"
+              aria-controls="collapse-tab-pane"
               aria-selected="false"
             >
               <i class="fa-sharp fa-solid fa-angles-up"></i>
@@ -111,64 +111,96 @@
         <div class="tab-content" id="myTabContent">
           <div
             class="tab-pane fade show active"
-            id="home-tab-pane"
+            id="search-tab-pane"
             role="tabpanel"
-            aria-labelledby="home-tab"
+            aria-labelledby="search-tab"
             tabindex="0"
           >
-            <input class="form-control mt-3 mb-3" type="text" id="queryTerms" />
-            <button id="btnSearch">Search</button>
+            <input
+              id="queryTerms"
+              class="form-control me-2 mt-4"
+              type="text"
+              placeholder="Search"
+              aria-label="Search"
+            />
             <div id="results"></div>
+
+            <div class="d-grid pt-4 px-5">
+              <button id="btnSearch" class="btn btn-outline-info" type="button">
+                Search
+              </button>
+            </div>
           </div>
           <div
             class="tab-pane fade"
-            id="profile-tab-pane"
+            id="explore-tab-pane"
             role="tabpanel"
-            aria-labelledby="profile-tab"
+            aria-labelledby="explore-tab"
             tabindex="0"
           >
-            <div id="explore-tab" class="form-check mt-3">
-              <h3 class="panel-font">Nature related</h3>
+            <div id="explore-tab" class="form-check mt-2 px-5">
+              <h3 class="panel-font">Landmark</h3>
               <input
-                class="form-check-input"
+                id="park"
+                class="form-check-input radioBtn"
                 type="radio"
                 name="explore"
-                id="nature-sculpture"
+                value="16032"
+                id="nature-park"
+                checked
               />
-              <label class="form-check-label radioFont" for="nature-sculpture">
-                Sculpture
+              <label class="form-check-label radioFont" for="nature-park">
+                Park
               </label>
             </div>
-            <div class="form-check">
+            <div class="form-check px-5">
               <input
-                class="form-check-input"
+                class="form-check-input radioBtn"
                 type="radio"
                 name="explore"
+                value="16046"
                 id="nature-scenic"
               />
               <label class="form-check-label radioFont" for="nature-scenic">
                 Scenic location
               </label>
             </div>
-            <!-- end of park  -->
-            <br />
-            <div id="" class="form-check mt-3">
-              <h3 class="panel-font">Entertainment</h3>
+
+            <div class="form-check px-5">
               <input
-                class="form-check-input"
+                id="sculpture"
+                class="form-check-input radioBtn"
                 type="radio"
                 name="explore"
+                value="16047"
+                id="nature-sculpture"
+              />
+              <label class="form-check-label radioFont" for="nature-sculpture">
+                Sculpture
+              </label>
+            </div>
+
+            <!-- end of park  -->
+            <br />
+            <div id="entertainment" class="form-check mt-2 px-5">
+              <h3 class="panel-font">Entertainment</h3>
+              <input
+                class="form-check-input radioBtn"
+                type="radio"
+                name="explore"
+                value="13006"
                 id="indoor-game"
               />
               <label class="form-check-label radioFont" for="indoor-game">
                 Indoor
               </label>
             </div>
-            <div class="form-check">
+            <div class="form-check px-5">
               <input
-                class="form-check-input"
+                class="form-check-input radioBtn"
                 type="radio"
                 name="explore"
+                value="18000"
                 id="outdoor-game"
               />
               <label class="form-check-label radioFont" for="outdoor-game">
@@ -176,39 +208,51 @@
               </label>
             </div>
             <br />
-            <div id="" class="form-check mt-3">
-              <h3 class="panel-font">Places to Chill</h3>
+            <div id="dining" class="form-check mt-2 px-5">
+              <h3 class="panel-font">Dining</h3>
               <input
-                class="form-check-input"
+                class="form-check-input radioBtn"
                 type="radio"
                 name="explore"
+                value="13000"
                 id="chill-resto"
               />
               <label class="form-check-label radioFont" for="chill-resto">
                 Restaurant
               </label>
             </div>
-            <div class="form-check">
+            <div class="form-check px-5">
               <input
-                class="form-check-input"
+                class="form-check-input radioBtn"
                 type="radio"
                 name="explore"
+                value="13003"
                 id="chill-bar"
               />
               <label class="form-check-label radioFont" for="chill-bar">
                 Bar
               </label>
             </div>
-            <div class="form-check">
+            <div class="form-check px-5">
               <input
-                class="form-check-input"
+                class="form-check-input radioBtn"
                 type="radio"
                 name="explore"
+                value="13063"
                 id="chill-pet"
               />
               <label class="form-check-label radioFont" for="chill-pet">
                 Pet Cafe
               </label>
+            </div>
+            <div class="d-grid pt-4 px-5 mr-1">
+              <button
+                id="exploreBtn"
+                class="btn btn-outline-info"
+                type="button"
+              >
+                Search
+              </button>
             </div>
           </div>
           <!-- end of explore tab -->

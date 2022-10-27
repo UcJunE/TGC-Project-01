@@ -21,10 +21,19 @@
     padding-left: 10px; 
 }
 
+/* @media screen(max-width:600px) {
+    #search-container{
+
+    }
+    
+} */
+
 #results {
     max-height: 300px;
     overflow-y:scroll;
+    z-index: 30000;
 }
+
 
 .search-result {
     margin:5px;

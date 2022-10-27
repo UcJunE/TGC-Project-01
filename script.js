@@ -1,50 +1,39 @@
+let map = initMap();
 window.addEventListener("DOMContentLoaded", async function () {
   function init() {
-    let map = initMap();
-    let resultOfSearchLayer = L.layerGroup();
-    resultOfSearchLayer.addTo(map);
+    // let resultOfSearchLayer = L.layerGroup();
+    // resultOfSearchLayer.addTo(map);
+    let markerClusterLayer = L.markerClusterGroup();
+    markerClusterLayer.addTo(map);
 
     document
-      .querySelector("#home-tab")
+      .querySelector("#btnSearch")
       .addEventListener("click", async function () {
-        resultOfSearchLayer.clearLayers();
-          // let queryContainer = document.querySelector("#home-tab-pane");
-          // queryContainer.addEventListener("click", function () {
-          //   alert("haha");
-          //   queryContainer.innerHTML += `
-          //   <input type="text" id="queryTerms" />
-          //   <button id="btnSearch">Search</button>
-
-          //   `;
-          // });
+        document.querySelector("#results").innerHTML = "";
+        // resultOfSearchLayer.clearLayers();
+        markerClusterLayer.clearLayers();
 
         let queryTerms = document.querySelector("#queryTerms").value;
         let boundaries = map.getBounds();
         let center = boundaries.getCenter();
         let latLng = center.lat + "," + center.lng;
-        let selectedCategory = "";
-        let parkMarker = L.icon({
-          iconUrl: `images/nature.png`,
-          iconSize: [40, 50],
-          iconAnchor: [22, 40],
-          popupAnchor: [0, -30],
-        });
+        let selectedCategory = 16000;
+        let selectedIcon = locationMarker;
 
-        let presetCaterory = {
-          park: 16000,
-          entertainment: 13000,
-          spiritual: 12098,
-          dining: 13000,
-        };
+        // let category = {
+        //   park: 16032,
+        //   scenic: 16046,
+        //   entertainment: 13000,
+        //   bowling: 13006,
+        //   sports: 18000,
+        //   restaurant: 13000,
+        //   "pet-cafe": 13063,
+        //   bar: 13003,
+        // };
 
         // test case if user dint input anything .
         // preset it to certain category .
 
-        if (queryTerms == "") {
-          queryTerms = "park";
-          selectedCategory = presetCaterory.park;
-        }
-        console.log(selectedCategory);
         let queryResults = await generalSearch(
           latLng,
           queryTerms,
@@ -60,9 +49,10 @@ window.addEventListener("DOMContentLoaded", async function () {
           let locationName = index.name;
           let eachPic = index.fsq_id;
 
-          let marker = L.marker([lat, lng], { icon: parkMarker }).addTo(
-            resultOfSearchLayer
-          );
+          let marker = L.marker([lat, lng], { icon: selectedIcon });
+          // marker.addTo(resultOfSearchLayer);
+
+          marker.addTo(markerClusterLayer);
 
           marker.bindPopup(function () {
             let newDivElement = document.createElement("div");
