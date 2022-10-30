@@ -88,29 +88,33 @@ window.addEventListener("DOMContentLoaded", async function () {
   //weather input
   let weatherData = await weather(1.29, 103.85);
   // console.log(weatherData);
-  const temp = weatherData.main.temp;
-  const minTemp = weatherData.main.temp_min;
-  const maxTemp = weatherData.main.temp_max;
+  const temp = Math.round(weatherData.main.temp);
+  const minTemp = Math.round(weatherData.main.temp_min);
+  const maxTemp = Math.round(weatherData.main.temp_max);
   const weatherDescription = weatherData.weather[0].description;
+
   const icon = weatherData.weather[0].icon;
   const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
   // console.log(temp, weatherDescription, icon, imageURL);
   document.querySelector("#weather-tab").addEventListener("click", function () {
+    let dateMonth = getTime();
     let weatherContainer = document.querySelector("#weather-tab-pane");
     weatherContainer.innerHTML = "";
     weatherContainer.innerHTML += `
     <div class="card weather-div">
     <img src=${imageURL} class="weather-icon" alt="icon.png">
+    <h1 class="weather-title"> ${temp}°C</h1>
     <div class="card-body">
-      <h3 class="card-title weather-title">${temp}°C</h3>
-      <p class="card-text weather-text">${weatherDescription}</p>
-      <p class="card-text weather-text">${minTemp}
+      <h4 class="card-title weather-date">${dateMonth}</h4>
+      <p class="card-text weather-text">${weatherDescription[0].toUpperCase()}${weatherDescription.slice(
+      1
+    )}</p>
+      <p class="card-text weather-text">${minTemp}°C
       <i class="fa-solid fa-temperature-arrow-down fa-2x"></i> 
-      ${maxTemp}
+      ${maxTemp}°C
       <i class="fa-solid fa-temperature-arrow-up fa-2x"></i></p>
     </div>  
     </div>
-
     `;
   });
 });

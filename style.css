@@ -36,7 +36,7 @@
 
 
 .search-result {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto', sans-serif;
     font-size: 0.8rem;
     color: black;
     margin:5px;
@@ -71,7 +71,7 @@
 
 .loc-text{
     text-align: center;
-    font-family: 'Courier Prime', monospace;
+    font-family: 'Roboto', sans-serif;
 }
 
 .error-pic{
@@ -87,6 +87,7 @@
 
 .weather-div{
     background-color: #74cdee;
+    
 }
 .weather-icon{
     width:180px;
@@ -98,10 +99,16 @@
     font-weight: bold;
     text-align: center;
     padding-bottom: 10px;
+    
 }
 
 .weather-text{
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto', sans-serif;
     font-size: 1rem ;
+    text-align: center;
+}
+
+.weather-date{
+    font-family: 'roboto',sans-serif;
     text-align: center;
 }

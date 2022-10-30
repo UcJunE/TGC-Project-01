@@ -90,7 +90,6 @@ function checkRadioBtn() {
   let rdbtn = "";
   for (let i = 0; i < radioBtns.length; i++) {
     if (radioBtns[i].checked) {
-      console.log(radioBtns[i].value);
       rdbtn = radioBtns[i].value;
       break;
     }
@@ -150,7 +149,7 @@ let triggerBtn = document
     let weatherPane = document.querySelector("#weather-tab-pane");
 
     searchPane.classList.add("show");
-    explorePane.classList.remove("show");
+    // explorePane.classList.remove("show");
     explorePane.classList.remove("active");
     searchPane.classList.add("active");
 
@@ -218,4 +217,27 @@ async function getPic(fsq_id) {
   });
 
   return response.data;
+}
+
+function getTime() {
+  const d = new Date();
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let date = d.getDate();
+  let month = d.getMonth();
+  let currentMonth = months[month].toUpperCase();
+
+  return `${date} ${currentMonth}`;
 }
