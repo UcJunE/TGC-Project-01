@@ -3,14 +3,11 @@ let markerClusterLayer = L.markerClusterGroup();
 markerClusterLayer.addTo(map);
 window.addEventListener("DOMContentLoaded", async function () {
   function init() {
-    // let resultOfSearchLayer = L.layerGroup();
-    // resultOfSearchLayer.addTo(map);
-
     document
       .querySelector("#btnSearch")
       .addEventListener("click", async function () {
         document.querySelector("#results").innerHTML = "";
-        // resultOfSearchLayer.clearLayers();
+
         markerClusterLayer.clearLayers();
 
         let queryTerms = document.querySelector("#queryTerms").value;
@@ -19,17 +16,6 @@ window.addEventListener("DOMContentLoaded", async function () {
         let latLng = center.lat + "," + center.lng;
         let selectedCategory = 16000;
         let selectedIcon = allMarker;
-
-        // let category = {
-        //   park: 16032,
-        //   scenic: 16046,
-        //   entertainment: 13000,
-        //   bowling: 13006,
-        //   sports: 18000,
-        //   restaurant: 13000,
-        //   "pet-cafe": 13063,
-        //   bar: 13003,
-        // };
 
         // test case if user dint input anything .
         // preset it to certain category .
@@ -47,7 +33,9 @@ window.addEventListener("DOMContentLoaded", async function () {
           let lat = index.geocodes.main.latitude;
           let lng = index.geocodes.main.longitude;
           let locationName = index.name;
-          let eachPic = index.fsq_id;
+          let eachfsqId = index.fsq_id;
+          let locAddress = index.location.formatted_address;
+          let locCountry = index.location.locality;
 
           let marker = L.marker([lat, lng], { icon: selectedIcon });
           // marker.addTo(resultOfSearchLayer);
@@ -57,20 +45,25 @@ window.addEventListener("DOMContentLoaded", async function () {
           marker.bindPopup(function () {
             let newDivElement = document.createElement("div");
             newDivElement.classList.add("popup");
-            newDivElement.innerHTML += `<h1>${locationName}</h1>`;
+            newDivElement.classList.add("card");
 
             async function retrievePicture() {
               let errorImg = "images/apology-pic.png";
-              let pic = await getPic(eachPic);
+              let pic = await getPic(eachfsqId);
               //pic == response.data
               let url = pic[0];
 
               if (url) {
-                let fullUrl = url.prefix + 300 * 300 + pic[0].suffix;
+                let fullUrl = url.prefix + 200 * 200 + pic[0].suffix;
                 // console.log(fullUrl);
-                newDivElement.innerHTML += `<div><img class="img-fluid" src=${fullUrl} /></div>`;
+                newDivElement.innerHTML += `<img class="img-fluid card-img-top loc-pic" src=${fullUrl} />
+                <div class="card-body">
+                <h3 class="card-title loc-title">${locationName}</h3>
+                <p class="card-text loc-text">${locAddress} , ${locCountry}</p>
+                
+              </div>`;
               } else {
-                newDivElement.innerHTML += `<div><img class="img-fluid" src="${errorImg}"></div>`;
+                newDivElement.innerHTML += `<div><img class="img-fluid error-pic" src="${errorImg}"></div>`;
               }
             }
             retrievePicture();
@@ -83,7 +76,9 @@ window.addEventListener("DOMContentLoaded", async function () {
 
           resultElement.addEventListener("click", function () {
             map.flyTo([lat, lng], 16);
-            marker.openPopup();
+            setTimeout(() => {
+              marker.openPopup();
+            }, 2000);
           });
           queryResultsElement.appendChild(resultElement);
         }
@@ -104,15 +99,18 @@ window.addEventListener("DOMContentLoaded", async function () {
     let weatherContainer = document.querySelector("#weather-tab-pane");
     weatherContainer.innerHTML = "";
     weatherContainer.innerHTML += `
-    <div class="card" style="object-fit:contain;">
-    <img src=${imageURL} class="card-img-top" alt="icon.png">
+    <div class="card weather-div">
+    <img src=${imageURL} class="weather-icon" alt="icon.png">
     <div class="card-body">
-      <h5 class="card-title">Weather Forecast</h5>
-      <p class="card-text">${weatherDescription}</p>
-      <p class="card-text">${temp}</p>
-      <p class="card-text">${minTemp} ${maxTemp}</p>
+      <h3 class="card-title weather-title">${temp}°C</h3>
+      <p class="card-text weather-text">${weatherDescription}</p>
+      <p class="card-text weather-text">${minTemp}
+      <i class="fa-solid fa-temperature-arrow-down fa-2x"></i> 
+      ${maxTemp}
+      <i class="fa-solid fa-temperature-arrow-up fa-2x"></i></p>
     </div>  
-  </div>
+    </div>
+
     `;
   });
 });

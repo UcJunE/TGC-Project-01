@@ -12,7 +12,7 @@
     position: absolute;
     top:2%;
     left: 55px;
-    z-index: 30000;
+    z-index: 300000;
     background-color: rgba(255, 255,255, 0.5);
     min-height: 25px; 
     width: 360px;
@@ -31,36 +31,77 @@
 #results {
     max-height: 300px;
     overflow-y:scroll;
-    z-index: 30000;
+    z-index: 300000;
 }
 
 
 .search-result {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: black;
     margin:5px;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 }
 
+.search-result:hover{
+    box-shadow: inset 300px 0 0 0 #74cdee;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+}
 
 .popup{
     overflow: scroll;
     width:300px;
-    height:300px;
+    height:300px;  
+}
+
+.loc-pic{
+    border-radius: 50%;
+    width: 80%;
+    align-self: center;
+}
+
+.loc-title{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.loc-text{
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+}
+
+.error-pic{
+    width: 100%;
+    height: 300px;
+}
+
+.radioFont{
+    font-size: 1rem;
 }
 
 /* Weather-container */
 
-/* #weather-container{
-    position: absolute;
-    top:2%;
-    left: 55px;
-    z-index: 30000;
-    background-color: rgba(255, 255,255, 0.5);
-    min-height: 25px; 
-    width: 300px;
-    padding-top: 15px;
-    padding-bottom: 10px;
-    padding-left: 10px; 
-} */
+.weather-div{
+    background-color: #74cdee;
+}
+.weather-icon{
+    width:180px;
+    align-self: center;
+}
 
-.radioFont{
-    font-size: 1rem;
+.weather-title{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.weather-text{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem ;
+    text-align: center;
 }

@@ -82,14 +82,6 @@ async function generalSearch(ll, search, radius, category = "") {
   return response.data;
 }
 
-async function getPic(fsq_id) {
-  let response = await axios.get(API_BASE_URL + `${fsq_id}/photos`, {
-    headers: headers,
-  });
-
-  return response.data;
-}
-
 //next . if user checked the radio button.
 //landmark
 function checkRadioBtn() {
@@ -112,13 +104,12 @@ let triggerBtn = document
     markerClusterLayer.clearLayers();
     let checkedCategory = checkRadioBtn();
     document.querySelector("#results").innerHTML = "";
-    // resultOfSearchLayer.clearLayers();
+
     let query = "";
     let boundaries = map.getBounds();
     let center = boundaries.getCenter();
     let latLng = center.lat + "," + center.lng;
     let selectedIcon = "";
-    console.log(checkedCategory);
 
     if (checkedCategory == "16032") {
       selectedIcon = parkMarker;
@@ -144,9 +135,24 @@ let triggerBtn = document
     let queryResults = await generalSearch(
       latLng,
       query,
-      10000,
+      100000,
       checkedCategory
     );
+
+    // document.querySelector("#search-tab-pane").classList.add("active");
+    // document.querySelector("#search-tab-pane").classList.add("show");
+    // to open search tab pane when user click on search btn on explore tab.
+    // document.querySelector("#explore-tab-pane").classList.remove("show");
+    // document.querySelector("#explore-tab-pane").classList.remove("active");
+
+    let searchPane = document.querySelector("#search-tab-pane");
+    let explorePane = document.querySelector("#explore-tab-pane");
+    let weatherPane = document.querySelector("#weather-tab-pane");
+
+    searchPane.classList.add("show");
+    explorePane.classList.remove("show");
+    explorePane.classList.remove("active");
+    searchPane.classList.add("active");
 
     let queryResultsElement = document.querySelector("#results");
 
@@ -154,7 +160,9 @@ let triggerBtn = document
       let lat = index.geocodes.main.latitude;
       let lng = index.geocodes.main.longitude;
       let locationName = index.name;
-      let eachPic = index.fsq_id;
+      let eachfsqId = index.fsq_id;
+      let locAddress = index.location.formatted_address;
+      let locCountry = index.location.locality;
 
       let marker = L.marker([lat, lng], { icon: selectedIcon });
       // marker.addTo(resultOfSearchLayer);
@@ -164,20 +172,25 @@ let triggerBtn = document
       marker.bindPopup(function () {
         let newDivElement = document.createElement("div");
         newDivElement.classList.add("popup");
-        newDivElement.innerHTML += `<h1>${locationName}</h1>`;
+        newDivElement.classList.add("card");
 
         async function retrievePicture() {
           let errorImg = "images/apology-pic.png";
-          let pic = await getPic(eachPic);
+          let pic = await getPic(eachfsqId);
           //pic == response.data
           let url = pic[0];
 
           if (url) {
-            let fullUrl = url.prefix + 300 * 300 + pic[0].suffix;
+            let fullUrl = url.prefix + 200 * 200 + pic[0].suffix;
             // console.log(fullUrl);
-            newDivElement.innerHTML += `<div><img class="img-fluid" src=${fullUrl} /></div>`;
+            newDivElement.innerHTML += `<img class="img-fluid card-img-top loc-pic" src=${fullUrl} />
+            <div class="card-body">
+            <h3 class="card-title loc-title">${locationName}</h3>
+            <p class="card-text loc-text">${locAddress} , ${locCountry}</p>
+            
+          </div>`;
           } else {
-            newDivElement.innerHTML += `<div><img class="img-fluid" src="${errorImg}"></div>`;
+            newDivElement.innerHTML += `<div><img class="img-fluid error-pic" src="${errorImg}"></div>`;
           }
         }
         retrievePicture();
@@ -190,8 +203,19 @@ let triggerBtn = document
 
       resultElement.addEventListener("click", function () {
         map.flyTo([lat, lng], 16);
-        marker.openPopup();
+        setTimeout(() => {
+          marker.openPopup();
+        }, 3000);
       });
       queryResultsElement.appendChild(resultElement);
     }
   });
+
+// get pic from api endpoint
+async function getPic(fsq_id) {
+  let response = await axios.get(API_BASE_URL + `${fsq_id}/photos`, {
+    headers: headers,
+  });
+
+  return response.data;
+}
