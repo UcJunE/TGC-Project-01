@@ -11,7 +11,7 @@
 #search-container{
     position: absolute;
     top:2%;
-    left: 55px;
+    left: 2%;
     z-index: 300000;
     background-color: rgba(255, 255,255, 0.5);
     min-height: 25px; 
@@ -79,14 +79,32 @@
     height: 300px;
 }
 
+
+
+/* Explore-container */
 .radioFont{
     font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
 }
+
+.radioFont:hover{
+    color:#74cdee;
+    font-size: 1.2rem;
+}
+
+.panel-font{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+
 
 /* Weather-container */
 
 .weather-div{
-    background-color: #74cdee;
+    
+    background-image:url(/TGC-Project-01/images/weather-img.png);
+    background-size: cover;
     
 }
 .weather-icon{
@@ -112,3 +130,18 @@
     font-family: 'roboto',sans-serif;
     text-align: center;
 }
+
+.leaflet-control-zoom{
+ left: 95vw;
+ top: 5vh;
+}
+
+/* leaflet-zoom-icon */
+@media screen and (max-width:767px) {
+    .leaflet-control-zoom{
+        left: 90vw;
+        top: 3vh;
+    }    
+}
+
+
