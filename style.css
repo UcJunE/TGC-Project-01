@@ -31,7 +31,7 @@
 #results {
     max-height: 300px;
     overflow-y:scroll;
-    z-index: 300000;
+    z-index:    000;
 }
 
 
@@ -144,4 +144,8 @@
     }    
 }
 
-
+#feedback-form{
+    position: relative;
+    z-index: 300000;
+    
+}
