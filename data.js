@@ -148,8 +148,16 @@ let triggerBtn = document
     let explorePane = document.querySelector("#explore-tab-pane");
     let weatherPane = document.querySelector("#weather-tab-pane");
 
+    // Tab buttons
+    let searchPaneTab = document.querySelector("#search-tab");
+    let explorePaneTab = document.querySelector("#explore-tab");
+    let weatherPaneTab = document.querySelector("#weather-tab");
+
+    explorePaneTab.classList.remove('active');
+    searchPaneTab.classList.add('active');
+
     searchPane.classList.add("show");
-    // explorePane.classList.remove("show");
+    explorePane.classList.remove("show");
     explorePane.classList.remove("active");
     searchPane.classList.add("active");
 

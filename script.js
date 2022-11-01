@@ -121,7 +121,9 @@ window.addEventListener("DOMContentLoaded", async function () {
 
 function initMap() {
   // create a map object
-  let map = L.map("map");
+  let map = L.map("map", {
+    closePopupOnClick: false
+  });
   // set the center point and the zoom
   map.setView([1.29, 103.85], 13);
 
