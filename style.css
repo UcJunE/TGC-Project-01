@@ -13,9 +13,9 @@
     top:2%;
     left: 2%;
     z-index: 300000;
-    background-color: rgba(255, 255,255, 0.5);
+    background-color: rgba(150, 176, 227, 0.5);
     min-height: 25px; 
-    width: 18%;
+    width: 330px;
     padding-top: 15px;
     padding-bottom: 10px;
     padding-left: 10px; 
@@ -23,7 +23,7 @@
 
 @media screen and (max-width:767px) {
     #search-container{
-width: 85%;
+    width: 330px;
     }
     
 }
@@ -46,7 +46,7 @@ width: 85%;
 
 .search-result:hover{
     box-shadow: inset 300px 0 0 0 #74cdee;
-    color: white;
+    color:white;
     font-size: 1.2rem;
     font-weight: bold;
     
@@ -89,7 +89,8 @@ width: 85%;
 }
 
 .radioFont:hover{
-    color:#74cdee;
+    color:#1f82c7;
+    font-weight: bolder;
     font-size: 1.2rem;
 }
 
@@ -131,13 +132,13 @@ width: 85%;
     font-family: 'roboto',sans-serif;
     text-align: center;
 }
-
+/* leaflet-zoom-icon */
 .leaflet-control-zoom{
- left: 95vw;
+ left: 93vw;
  top: 5vh;
 }
 
-/* leaflet-zoom-icon */
+
 @media screen and (max-width:767px) {
     .leaflet-control-zoom{
         left: 90vw;
@@ -149,18 +150,35 @@ width: 85%;
     width: 10%;
 }
 
+/* zoom to user current location */
+.leaflet-bar-part{
+    position: absolute;
+    top:8vh;
+    left:93vw;
+}
+
+
+@media screen and (max-width:767px) {
+    .leaflet-bar-part{
+        top:4vh;
+        left:90vw;
+    }
+}
+    
+
+
 /* Feedback form */
 #toggleHelp{
     position: relative;
     z-index: 345345;
-    left:95vw;
+    left:92vw;
     top: 90vh;
     background-color: bisque;
     border-radius: 50%;
 }
 
 #toggleHelp:hover{
-    background-color:yellow;
+    background-color:#f3b184;
 }
 
 @media screen and (max-width:767px) {
@@ -171,6 +189,13 @@ width: 85%;
     }
 }
 
+@media screen and (min-width:767px) {
+    #toggleHelp{
+        z-index: 345345;
+        left: 93vw;
+        top:90vh;
+    }
+}
 #help-modal{
     margin-top: 10vh;
 }
@@ -179,4 +204,29 @@ width: 85%;
     #help-modal{  
         margin-top: 180px;
     }
-}   
+}
+
+.modal-header{
+    border-bottom-width: 0px;
+}
+
+#modal-div{
+    background-color: #74cdee;
+}
+
+.help-title{
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+
+}
+
+.help-sub{
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+
+.help-text{
+    font-size: 1rem;
+    font-weight: bold;
+}
+

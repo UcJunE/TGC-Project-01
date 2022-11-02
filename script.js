@@ -119,10 +119,19 @@ window.addEventListener("DOMContentLoaded", async function () {
   });
 });
 
+//add user current location
+let userCurrentLocation = L.control
+  .locate({
+    initialZoomLevel: 13,
+    drawCircle: true,
+  })
+  .addTo(map);
+userLocation.start();
+
 function initMap() {
   // create a map object
   let map = L.map("map", {
-    closePopupOnClick: false
+    closePopupOnClick: false,
   });
   // set the center point and the zoom
   map.setView([1.29, 103.85], 13);
