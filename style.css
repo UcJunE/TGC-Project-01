@@ -1,37 +1,37 @@
-#map{
+#map {
     height: 100vh;
 }
 
-#map-container{
+#map-container {
     position: relative;
-    
+
 }
 
 /* search button */
-#search-container{
+#search-container {
     position: absolute;
-    top:2%;
+    top: 2%;
     left: 2%;
     z-index: 300000;
     background-color: rgba(150, 176, 227, 0.5);
-    min-height: 25px; 
+    min-height: 25px;
     width: 330px;
     padding-top: 15px;
     padding-bottom: 10px;
-    padding-left: 10px; 
+    padding-left: 10px;
 }
 
 @media screen and (max-width:767px) {
-    #search-container{
-    width: 330px;
+    #search-container {
+        width: 330px;
     }
-    
+
 }
 
 #results {
     max-height: 300px;
-    overflow-y:scroll;
-    z-index:    000;
+    overflow-y: scroll;
+    z-index: 000;
 }
 
 
@@ -40,42 +40,42 @@
     font-family: 'Roboto', sans-serif;
     font-size: 0.8rem;
     color: black;
-    margin:5px;
+    margin: 5px;
     transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 }
 
-.search-result:hover{
+.search-result:hover {
     box-shadow: inset 300px 0 0 0 #74cdee;
-    color:white;
+    color: white;
     font-size: 1.2rem;
     font-weight: bold;
-    
+
 }
 
-.popup{
+.popup {
     overflow-y: scroll;
-    width:300px;
-    height:300px;  
+    width: 300px;
+    height: 300px;
 }
 
-.loc-pic{
+.loc-pic {
     border-radius: 50%;
     width: 80%;
     align-self: center;
 }
 
-.loc-title{
+.loc-title {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
 }
 
-.loc-text{
+.loc-text {
     text-align: center;
     font-family: 'Roboto', sans-serif;
 }
 
-.error-pic{
+.error-pic {
     width: 100%;
     height: 300px;
 }
@@ -83,18 +83,18 @@
 
 
 /* Explore-container */
-.radioFont{
+.radioFont {
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
 }
 
-.radioFont:hover{
-    color:#1f82c7;
+.radioFont:hover {
+    color: #1f82c7;
     font-weight: bolder;
     font-size: 1.2rem;
 }
 
-.panel-font{
+.panel-font {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
 }
@@ -103,130 +103,134 @@
 
 /* Weather-container */
 
-.weather-div{
-    
-    background-image:url(/TGC-Project-01/images/weather-img.png);
+.weather-div {
+
+    background-image: url(/TGC-Project-01/images/weather-img.png);
     background-size: cover;
-    
+
 }
-.weather-icon{
-    width:180px;
+
+.weather-icon {
+    width: 180px;
     align-self: center;
 }
 
-.weather-title{
+.weather-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     text-align: center;
     padding-bottom: 10px;
-    
+
 }
 
-.weather-text{
+.weather-text {
     font-family: 'Roboto', sans-serif;
-    font-size: 1rem ;
+    font-size: 1rem;
     text-align: center;
 }
 
-.weather-date{
-    font-family: 'roboto',sans-serif;
+.weather-date {
+    font-family: 'roboto', sans-serif;
     text-align: center;
 }
+
 /* leaflet-zoom-icon */
-.leaflet-control-zoom{
- left: 93vw;
- top: 5vh;
+.leaflet-control-zoom {
+    left: 93vw;
+    top: 5vh;
 }
 
 
 @media screen and (max-width:767px) {
-    .leaflet-control-zoom{
+    .leaflet-control-zoom {
         left: 90vw;
         top: 3vh;
-    }    
+    }
 }
 
-.leaflet-popup-close-button{
-    width: 10%;
-}
-
-/* zoom to user current location */
-.leaflet-bar-part{
+/* zoom to user current location  */
+.leaflet-bar-part {
     position: absolute;
-    top:8vh;
-    left:93vw;
+    top: 8vh;
+    left: 93vw;
+    display: none;
 }
 
 
 @media screen and (max-width:767px) {
-    .leaflet-bar-part{
-        top:4vh;
-        left:90vw;
+    .leaflet-bar-part {
+        top: 4vh;
+        left: 90vw;
     }
 }
-    
+
 
 
 /* Feedback form */
-#toggleHelp{
+#toggleHelp {
     position: relative;
     z-index: 345345;
-    left:92vw;
+    left: 92vw;
     top: 90vh;
     background-color: bisque;
     border-radius: 50%;
 }
 
-#toggleHelp:hover{
-    background-color:#f3b184;
+#toggleHelp:hover {
+    background-color: #f3b184;
 }
 
 @media screen and (max-width:767px) {
-    #toggleHelp{
+    #toggleHelp {
         z-index: 345345;
         left: 85vw;
-        top:90vh;
+        top: 90vh;
     }
 }
 
 @media screen and (min-width:767px) {
-    #toggleHelp{
+    #toggleHelp {
         z-index: 345345;
         left: 93vw;
-        top:90vh;
+        top: 90vh;
     }
 }
-#help-modal{
+
+#help-modal {
     margin-top: 10vh;
 }
 
 @media screen and (max-width:767px) {
-    #help-modal{  
+    #help-modal {
         margin-top: 180px;
     }
 }
 
-.modal-header{
+.modal-header {
     border-bottom-width: 0px;
 }
 
-#modal-div{
+#modal-div {
     background-color: #74cdee;
 }
 
-.help-title{
+.help-title {
     font-family: 'Montserrat', sans-serif;
     color: black;
 
 }
 
-.help-sub{
+.help-sub {
     font-family: 'Montserrat', sans-serif;
     color: black;
 }
 
-.help-text{
+.help-text {
     font-size: 1rem;
     font-weight: bold;
 }
 
+.form-error-msg{
+    font-size: 12px;
+    color: red;
+}

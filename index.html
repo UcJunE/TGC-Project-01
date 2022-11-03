@@ -301,21 +301,25 @@
                 <div class="p-4 rounded shadow-md">
                   <div>
                     <label for="name" class="form-label help-text">Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    <input id="form-name" type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    <span id="name-error" class="form-error-msg"></span>
                   </div>
                   <div class="mt-3">
                     <label for="email" class="form-label help-text">Email</label>
-                    <input type="text" name="email" class="form-control" placeholder="Your Email" required>
-                  </div class="mt-3">
+                    <input id="form-email" type="text" name="email" class="form-control" placeholder="Your Email" required>
+                    <span id="email-error" class="form-error-msg"></span>
+                  </div>
                   <div class="mt-3">
                     <label for="subject" class="form-label help-text">Subject</label>
-                    <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                    <input id="form-subject" type="text" name="subject" class="form-control" placeholder="Subject" required>
+                    <span id="subject-error" class="form-error-msg"></span>
                   </div>
                   <div class="mt-3 mb-3">
                     <label for="message" class="form-label help-text">Message</label>
-                    <textarea name="message" cols="20" rows="6" class="form-control" placeholder="message"></textarea>
+                    <textarea id="form-message" name="message" cols="20" rows="6" class="form-control" placeholder="message"></textarea>
+                    <span id="message-error" class="form-error-msg"></span>
                   </div>
-                  <button class="btn btn-outline-dark">
+                  <button id="submit-btn"  type="button" class="btn btn-outline-dark">
                     Submit Form
                   </button>
                 </div>
@@ -349,6 +353,7 @@
 
     <script src="data.js"></script>
     <script src="weather.js"></script>
+    <script src="feedback-validation.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
