@@ -75,10 +75,12 @@ window.addEventListener("DOMContentLoaded", async function () {
           resultElement.classList.add("search-result");
 
           resultElement.addEventListener("click", function () {
-            map.flyTo([lat, lng], 16);
-            setTimeout(() => {
-              marker.openPopup();
-            }, 2000);
+            markerClusterLayer.zoomToShowLayer(marker, function () {
+              map.flyTo([lat, lng], 17);
+              setTimeout(() => {
+                marker.openPopup();
+              }, 2000);
+            });
           });
           queryResultsElement.appendChild(resultElement);
         }
@@ -117,6 +119,68 @@ window.addEventListener("DOMContentLoaded", async function () {
     </div>
     `;
   });
+
+  // add in npark track
+  let parkTrackResponse = await axios.get("nparks-tracks-geojson.geojson");
+  //parkconnector layer
+  // console.log(parkTrackResponse);
+  let parkConnectorLayer = L.geoJson(parkTrackResponse.data, {
+    onEachFeature: function (features, layer) {
+      let divElement = document.createElement("div");
+      divElement.innerHTML = features.properties.Description;
+
+      let tdNum = divElement.querySelectorAll("td");
+      let parkConnectorName = tdNum[0].innerText;
+      let connectorPath = tdNum[1].innerText;
+      let displayText = `<p style ="font-size:1rem"><b>${connectorPath}</b> <br>located at <br><b> ${parkConnectorName}</b>. </p>`;
+      layer.bindPopup(displayText);
+    },
+  });
+  parkConnectorLayer.addTo(map);
+
+  //styling for park connector layer
+  parkConnectorLayer.setStyle({
+    color: "#1d6d86",
+    strokeWidth: "0.5",
+  });
+
+  //add in cycling path
+
+  let cyclingPathResponse = await axios.get(
+    "cycling-path-network-geojson.geojson"
+  );
+
+  //cyclinglayer
+  let cyclingPathLayer = L.geoJson(cyclingPathResponse.data, {
+    onEachFeature: function (features, layer) {
+      let divElement = document.createElement("div");
+      divElement.innerHTML = features.properties.Description;
+
+      let tdNum = divElement.querySelectorAll("td");
+
+      let cyclingPath = tdNum[0].innerText;
+
+      let agency = tdNum[1].innerText;
+
+      let displayText = `<p style ="font-size:1rem">Cycling path is available at <br><b>${cyclingPath}</b>. <br> Maintained by: <br><b>${agency}</b>. </p>`;
+      layer.bindPopup(displayText);
+    },
+  });
+  cyclingPathLayer.addTo(map);
+
+  //styling for cycling path
+
+  cyclingPathLayer.setStyle({
+    color: "#a0a1a1",
+    strokeWidth: "0.5",
+  });
+
+  let overlayMaps = {
+    "Park Connector": parkConnectorLayer,
+    "Cycling Path": cyclingPathLayer,
+  };
+
+  L.control.layers({}, overlayMaps, { position: "bottomright" }).addTo(map);
 });
 
 // add user current location

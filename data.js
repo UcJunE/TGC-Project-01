@@ -146,15 +146,13 @@ let triggerBtn = document
 
     let searchPane = document.querySelector("#search-tab-pane");
     let explorePane = document.querySelector("#explore-tab-pane");
-    let weatherPane = document.querySelector("#weather-tab-pane");
 
     // Tab buttons
     let searchPaneTab = document.querySelector("#search-tab");
     let explorePaneTab = document.querySelector("#explore-tab");
-    let weatherPaneTab = document.querySelector("#weather-tab");
 
-    explorePaneTab.classList.remove('active');
-    searchPaneTab.classList.add('active');
+    explorePaneTab.classList.remove("active");
+    searchPaneTab.classList.add("active");
 
     searchPane.classList.add("show");
     explorePane.classList.remove("show");
@@ -209,10 +207,12 @@ let triggerBtn = document
       resultElement.classList.add("search-result");
 
       resultElement.addEventListener("click", function () {
-        map.flyTo([lat, lng], 16);
-        setTimeout(() => {
-          marker.openPopup();
-        }, 3000);
+        markerClusterLayer.zoomToShowLayer(marker, function () {
+          map.flyTo([lat, lng], 17);
+          setTimeout(() => {
+            marker.openPopup();
+          }, 2000);
+        });
       });
       queryResultsElement.appendChild(resultElement);
     }
