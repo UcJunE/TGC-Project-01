@@ -1,107 +1,263 @@
-#map{
+#map {
     height: 100vh;
 }
 
-#map-container{
+#map-container {
     position: relative;
-    
+
 }
 
 /* search button */
-#search-container{
+#search-container {
     position: absolute;
-    top:2%;
-    left: 55px;
+    top: 2%;
+    left: 2%;
     z-index: 300000;
-    background-color: rgba(255, 255,255, 0.5);
-    min-height: 25px; 
-    width: 360px;
+    background-color: rgba(150, 176, 227, 0.5);
+    min-height: 25px;
+    width: 330px;
     padding-top: 15px;
     padding-bottom: 10px;
-    padding-left: 10px; 
+    padding-left: 10px;
 }
 
-/* @media screen(max-width:600px) {
-    #search-container{
-
+@media screen and (max-width:767px) {
+    #search-container {
+        width: 330px;
     }
-    
-} */
+
+}
 
 #results {
     max-height: 300px;
-    overflow-y:scroll;
-    z-index: 300000;
+    overflow-y: scroll;
+    z-index: 000;
 }
+
 
 
 .search-result {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto', sans-serif;
     font-size: 0.8rem;
     color: black;
-    margin:5px;
+    margin: 5px;
     transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 }
 
-.search-result:hover{
+.search-result:hover {
     box-shadow: inset 300px 0 0 0 #74cdee;
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
-    
+
 }
 
-.popup{
-    overflow: scroll;
-    width:300px;
-    height:300px;  
+.popup {
+    overflow-y: scroll;
+    width: 300px;
+    height: 300px;
 }
 
-.loc-pic{
+.loc-pic {
     border-radius: 50%;
     width: 80%;
     align-self: center;
 }
 
-.loc-title{
+.loc-title {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
 }
 
-.loc-text{
+.loc-text {
     text-align: center;
-    font-family: 'Courier Prime', monospace;
+    font-family: 'Roboto', sans-serif;
 }
 
-.error-pic{
+.error-pic {
     width: 100%;
     height: 300px;
 }
 
-.radioFont{
+
+
+/* Explore-container */
+.radioFont {
     font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
 }
+
+.radioFont:hover {
+    color: #1f82c7;
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+.panel-font {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+
 
 /* Weather-container */
 
-.weather-div{
-    background-color: #74cdee;
+.weather-div {
+
+    background-image: url(/TGC-Project-01/images/weather-img.png);
+    background-size: cover;
+
 }
-.weather-icon{
-    width:180px;
+
+.weather-icon {
+    width: 180px;
     align-self: center;
 }
 
-.weather-title{
+.weather-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     text-align: center;
     padding-bottom: 10px;
+
 }
 
-.weather-text{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem ;
+.weather-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
     text-align: center;
+}
+
+.weather-date {
+    font-family: 'roboto', sans-serif;
+    text-align: center;
+}
+
+/* leaflet-zoom-icon */
+.leaflet-control-zoom {
+    left: 93vw;
+    top: 5vh;
+}
+
+
+@media screen and (max-width:767px) {
+    .leaflet-control-zoom {
+        left: 90vw;
+        top: 3vh;
+    }
+}
+
+/* zoom to user current location  */
+.leaflet-bar-part {
+    position: absolute;
+    top: 8vh;
+    left: 93vw;
+    display: none;
+}
+
+
+@media screen and (max-width:767px) {
+    .leaflet-bar-part {
+        top: 4vh;
+        left: 90vw;
+    }
+}
+
+
+
+/* Feedback form */
+#toggleHelp {
+    position: relative;
+    z-index: 345345;
+    left: 92vw;
+    top: 90vh;
+    background-color: bisque;
+    border-radius: 50%;
+}
+
+#toggleHelp:hover {
+    background-color: #f3b184;
+}
+
+@media screen and (max-width:767px) {
+    #toggleHelp {
+        z-index: 345345;
+        left: 85vw;
+        top: 90vh;
+    }
+}
+
+@media screen and (min-width:767px) {
+    #toggleHelp {
+        z-index: 345345;
+        left: 94vw;
+        top: 90vh;
+    }
+}
+
+#help-modal {
+    margin-top: 10vh;
+}
+
+@media screen and (max-width:767px) {
+    #help-modal {
+        margin-top: 180px;
+    }
+}
+
+.modal-header {
+    border-bottom-width: 0px;
+}
+
+#modal-div {
+    background-color: #74cdee;
+}
+
+.help-title {
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+
+}
+
+.help-sub {
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+
+.help-text {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.form-error-msg{
+    font-size: 12px;
+    color: red;
+}
+
+/* leaflet-control-layers-toggle */
+.leaflet-control-layers{
+    background-color: bisque;
+   right: 3vw;
+   bottom: 10vh;
+   
+}
+
+.leaflet-control-layers:hover{
+    background-color: #f3b184;
+}
+
+@media screen and (max-width:767px) {
+    .leaflet-control-layers {
+        right: 0.2vw;
+        bottom: 10vh;
+    }
+}
+
+.leaflet-bar a{
+    background-color: bisque;
+}
+
+.leaflet-bar a:hover{
+    background-color: #f3b184;
 }

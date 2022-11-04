@@ -90,7 +90,6 @@ function checkRadioBtn() {
   let rdbtn = "";
   for (let i = 0; i < radioBtns.length; i++) {
     if (radioBtns[i].checked) {
-      console.log(radioBtns[i].value);
       rdbtn = radioBtns[i].value;
       break;
     }
@@ -117,7 +116,7 @@ let triggerBtn = document
       selectedIcon = scenicMarker;
     } else if (checkedCategory == "16047") {
       selectedIcon = locationMarker;
-    } else if (checkedCategory == "13006") {
+    } else if (checkedCategory == "10006") {
       selectedIcon = gamingMarker;
     } else if (checkedCategory == "18000") {
       selectedIcon = outdoorMarker;
@@ -147,7 +146,13 @@ let triggerBtn = document
 
     let searchPane = document.querySelector("#search-tab-pane");
     let explorePane = document.querySelector("#explore-tab-pane");
-    let weatherPane = document.querySelector("#weather-tab-pane");
+
+    // Tab buttons
+    let searchPaneTab = document.querySelector("#search-tab");
+    let explorePaneTab = document.querySelector("#explore-tab");
+
+    explorePaneTab.classList.remove("active");
+    searchPaneTab.classList.add("active");
 
     searchPane.classList.add("show");
     explorePane.classList.remove("show");
@@ -202,10 +207,12 @@ let triggerBtn = document
       resultElement.classList.add("search-result");
 
       resultElement.addEventListener("click", function () {
-        map.flyTo([lat, lng], 16);
-        setTimeout(() => {
-          marker.openPopup();
-        }, 3000);
+        markerClusterLayer.zoomToShowLayer(marker, function () {
+          map.flyTo([lat, lng], 17);
+          setTimeout(() => {
+            marker.openPopup();
+          }, 2000);
+        });
       });
       queryResultsElement.appendChild(resultElement);
     }
@@ -218,4 +225,27 @@ async function getPic(fsq_id) {
   });
 
   return response.data;
+}
+
+function getTime() {
+  const d = new Date();
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let date = d.getDate();
+  let month = d.getMonth();
+  let currentMonth = months[month].toUpperCase();
+
+  return `${date} ${currentMonth}`;
 }
