@@ -1,6 +1,6 @@
 # **IdeasMap**
 
-![Screenshots of IdeasMap 's homepage](/screenshots/responsive-preview.png)
+![Screenshots of IdeasMap 's homepage](/screenshots/responsive-preview.PNG)
 
 Link to demo : [IdeasMap](https://sg-ideasmap.netlify.app/)
 
@@ -26,13 +26,13 @@ The web application also aims to drive the economy growth in singapore by attrac
 
 ## Structure
 
-![Screenshots of wireframe](/screenshots/wireframe.png)
+![Screenshots of wireframe](/screenshots/wireframe.PNG)
 
 ---
 
 ## Color Scheme
 
-![Screenshots of color scheme](/screenshots/color-scheme.png)
+![Screenshots of color scheme](/screenshots/color-scheme.PNG)
 
 ### bluebell has silvers and pinks and yellows all within its delicate textures, and the blue is something we see simply at first glance
 
