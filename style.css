@@ -180,11 +180,20 @@
     background-color: #f3b184;
 }
 
-@media screen and (min-width:360px) and (max-width:767px) {
+@media screen and (min-width:280px) and (max-width:767px) {
     #toggleHelp {
         position: fixed;
         z-index: 345345;
         left: 84vw;
+        top: 87vh;
+    }
+}
+
+@media screen and (max-width:280px){
+    #toggleHelp {
+        position: fixed;
+        z-index: 345345;
+        left: 78vw;
         top: 87vh;
     }
 }
