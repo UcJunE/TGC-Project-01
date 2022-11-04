@@ -180,18 +180,29 @@
     background-color: #f3b184;
 }
 
-@media screen and (max-width:767px) {
+@media screen and (min-width:360px) and (max-width:767px) {
     #toggleHelp {
+        position: fixed;
         z-index: 345345;
-        left: 85vw;
+        left: 84vw;
+        top: 87vh;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1024px){
+    #toggleHelp {
+        position: fixed;
+        z-index: 345345;
+        left: 89vw;
         top: 90vh;
     }
 }
 
-@media screen and (min-width:767px) {
+@media screen and (min-width:1025px){
     #toggleHelp {
+        position: fixed;
         z-index: 345345;
-        left: 94vw;
+        left: 93vw;
         top: 90vh;
     }
 }
@@ -237,6 +248,7 @@
 
 /* leaflet-control-layers-toggle */
 .leaflet-control-layers{
+    position: fixed;
     background-color: bisque;
    right: 3vw;
    bottom: 10vh;
@@ -249,10 +261,22 @@
 
 @media screen and (max-width:767px) {
     .leaflet-control-layers {
-        right: 0.2vw;
-        bottom: 10vh;
+        position: fixed;
+        right: 1vw;
+        bottom: 14vh;
     }
 }
+
+@media screen and (min-width:768px) {
+    .leaflet-control-layers {
+        position: fixed;
+        right: 4vw;
+        bottom: 12vh;
+    }
+}
+
+
+
 
 .leaflet-bar a{
     background-color: bisque;
