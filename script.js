@@ -132,7 +132,7 @@ window.addEventListener("DOMContentLoaded", async function () {
       let tdNum = divElement.querySelectorAll("td");
       let parkConnectorName = tdNum[0].innerText;
       let connectorPath = tdNum[1].innerText;
-      let displayText = `<p style ="font-size:1rem"><b>${connectorPath}</b> <br>located at <br><b> ${parkConnectorName}</b>. </p>`;
+      let displayText = `<p style ="font-size:1rem"><b>${connectorPath}</b> <br>located at <br><b> ${parkConnectorName}</b> </p>`;
       layer.bindPopup(displayText);
     },
   });
@@ -162,7 +162,7 @@ window.addEventListener("DOMContentLoaded", async function () {
 
       let agency = tdNum[1].innerText;
 
-      let displayText = `<p style ="font-size:1rem">Cycling path is available at <br><b>${cyclingPath}</b>. <br> Maintained by: <br><b>${agency}</b>. </p>`;
+      let displayText = `<p style ="font-size:1rem">Cycling path is available at <br><b>${cyclingPath}</b> <br> Maintained by: <br><b>${agency}</b> </p>`;
       layer.bindPopup(displayText);
     },
   });

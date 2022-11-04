@@ -116,7 +116,7 @@ let triggerBtn = document
       selectedIcon = scenicMarker;
     } else if (checkedCategory == "16047") {
       selectedIcon = locationMarker;
-    } else if (checkedCategory == "13006") {
+    } else if (checkedCategory == "10006") {
       selectedIcon = gamingMarker;
     } else if (checkedCategory == "18000") {
       selectedIcon = outdoorMarker;
